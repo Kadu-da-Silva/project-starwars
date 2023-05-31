@@ -1,12 +1,8 @@
 * {
+  font-family: Arial, Helvetica , sans-serif;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
   font-weight: 100;
 }
-
-/* main {
-  
-} */
 
 table {
   border-collapse: collapse;
@@ -16,7 +12,7 @@ thead tr {
   margin: 0;
 }
 
-thead tr th{
+thead tr th {
   background-color: #333;
   color: white;
   margin: 0;
