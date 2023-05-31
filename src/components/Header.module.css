@@ -1,0 +1,30 @@
+.section {
+  align-items: center;
+  margin: 0;
+  text-align: center;
+}
+
+.header {
+  height: 15em;
+}
+
+.header h1 {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 32pt;
+  margin-top: 150px;
+}
+
+.header input {
+  background-color: rgb(30, 30, 30);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  color: white;
+  margin-top: 2em;
+  padding: 1em;
+}
+
+.header input:focus {
+  border: 1px solid yellow;
+  outline: none;
+}

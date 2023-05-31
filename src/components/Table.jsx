@@ -1,11 +1,19 @@
-import React from 'react';
-import useFetch from '../hooks/useFetch';
+import React, { useContext } from 'react';
 
-import './Table.module.css';
+import style from './Table.module.css';
+
+import useFetch from '../hooks/useFetch';
+import FilterContext from '../context/FilterContext';
 
 function Table() {
   const { data, error } = useFetch();
-  // console.log(data);
+  const { globalState } = useContext(FilterContext);
+  console.log(globalState);
+
+  const filteredData = data.filter(
+    (obj) => obj.name.toLowerCase().includes(globalState.toLowerCase()),
+  );
+
   if (error) {
     (
       <main>
@@ -14,9 +22,9 @@ function Table() {
     );
   }
   return (
-    <main>
-      <table>
-        <thead>
+    <section className={ style.section }>
+      <table className={ style.table }>
+        <thead className={ style.thead }>
           <tr>
             <th>Name</th>
             <th>Rotation Period</th>
@@ -33,8 +41,8 @@ function Table() {
             <th>URL</th>
           </tr>
         </thead>
-        <tbody>
-          {data.map((obj) => (
+        <tbody className={ style.tbody }>
+          {filteredData.map((obj) => (
             <tr key={ obj.name }>
               <td>{obj.name}</td>
               <td>{obj.rotation_period}</td>
@@ -53,7 +61,7 @@ function Table() {
           ))}
         </tbody>
       </table>
-    </main>
+    </section>
   );
 }
 
