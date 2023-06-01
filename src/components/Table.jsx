@@ -6,37 +6,41 @@ import useFetch from '../hooks/useFetch';
 import FilterContext from '../context/FilterContext';
 
 function Table() {
+  // estado com os resultados da API
   const { data, error } = useFetch();
-  const { globalState, filters } = useContext(FilterContext);
-  // console.log(filters);
 
+  // estados globais com os filtros
+  // globalState = '' filtro digitado pelo usuário
+  // filters = { column: '', comparator: '', number: 0 } estados com os filtros criados
+  const { globalState, filters } = useContext(FilterContext);
+
+  // array filtrado com o campo de busca
   const filteredData = data.filter(
     (obj) => obj.name.toLowerCase().includes(globalState.toLowerCase()),
   );
 
-  const dataWithFilters = () => {
-    const filterColumn = filters[0];
-    const filterOperator = filters[1];
-    const filterNumber = Number(filters[2]);
+  // array com os filtros criados
+  console.log(filters);
 
-    let filtered = filteredData;
+  // interage a cada filtro
+  const dataWithFilters = filteredData.filter((planet) => filters.every((filter) => {
+    const valuePlanet = Number(planet[filter.column]);
+    const valueFilter = Number(filter.number);
+    // console.log(valueFilter);
 
-    if (filterOperator === 'maior que') {
-      filtered = filteredData.filter(
-        (obj) => obj[filterColumn] > filterNumber,
-      );
-    } else if (filterOperator === 'menor que') {
-      filtered = filteredData.filter(
-        (obj) => obj[filterColumn] < filterNumber,
-      );
-    } else if (filterOperator === 'igual a') {
-      filtered = filteredData.filter(
-        (obj) => obj[filterColumn] === String(filterNumber),
-      );
+    switch (filter.comparator) {
+    case 'maior que':
+      return valuePlanet > valueFilter;
+    case 'menor que':
+      return valuePlanet < valueFilter;
+    case 'igual a':
+      return valuePlanet === valueFilter;
+    default:
+      return true;
     }
+  }));
 
-    return filtered;
-  };
+  console.log(dataWithFilters);
 
   if (error) {
     (
@@ -45,8 +49,16 @@ function Table() {
       </main>
     );
   }
+
   return (
     <section className={ style.section }>
+      <div className={ style.filters }>
+        {filters.map((filter, index) => (
+          <div key={ index } className={ style.filter }>
+            <span>{`${filter.column} ${filter.comparator} ${filter.number}`}</span>
+          </div>
+        ))}
+      </div>
       <table className={ style.table }>
         <thead className={ style.thead }>
           <tr>
@@ -66,7 +78,7 @@ function Table() {
           </tr>
         </thead>
         <tbody className={ style.tbody }>
-          {dataWithFilters().map((obj) => (
+          {dataWithFilters.map((obj) => (
             <tr key={ obj.name }>
               <td>{obj.name}</td>
               <td>{obj.rotation_period}</td>

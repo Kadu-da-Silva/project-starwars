@@ -12,11 +12,17 @@ function Header() {
   const filterComparative = useHandleChange('maior que');
   const filterNumber = useHandleChange(0);
 
-  const { setGlobalState, setFilters } = useContext(FilterContext);
+  const { setGlobalState, setFilters, filters } = useContext(FilterContext);
   setGlobalState(enterFilter.value);
 
   function handleClickFilter() {
-    setFilters([filterColumn.value, filterComparative.value, filterNumber.value]);
+    setFilters(
+      [...filters,
+        {
+          column: filterColumn.value,
+          comparator: filterComparative.value,
+          number: filterNumber.value }],
+    );
   }
 
   return (

@@ -1,5 +1,6 @@
 .section {
   display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -25,4 +26,15 @@
   height: 6em;
   padding: 10px;
   text-align: left;
+}
+
+.filters {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial , Helvetica , sans-serif;
+}
+
+.filter {
+  padding: 5px;
 }

@@ -4,7 +4,11 @@ import FilterContext from './FilterContext';
 
 function FilterProvider({ children }) {
   const [globalState, setGlobalState] = useState('');
-  const [filters, setFilters] = useState(['', '']);
+  const [filters, setFilters] = useState([{
+    column: '',
+    comparator: '',
+    number: '',
+  }]);
   return (
     <FilterContext.Provider
       value={
