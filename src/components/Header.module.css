@@ -26,11 +26,6 @@
   padding: 1em;
 }
 
-.header input:focus {
-  border: 1px solid yellow;
-  outline: none;
-}
-
 .selects {
   display: flex;
   flex-wrap: wrap;
@@ -46,6 +41,11 @@
   color: white;
   margin: 10px;
   width: auto;
+}
+
+.header input:focus {
+  border: 1px solid yellow;
+  outline: none;
 }
 
 .selects button {
