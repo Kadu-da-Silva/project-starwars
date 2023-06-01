@@ -7,12 +7,36 @@ import FilterContext from '../context/FilterContext';
 
 function Table() {
   const { data, error } = useFetch();
-  const { globalState } = useContext(FilterContext);
-  console.log(globalState);
+  const { globalState, filters } = useContext(FilterContext);
+  // console.log(filters);
 
   const filteredData = data.filter(
     (obj) => obj.name.toLowerCase().includes(globalState.toLowerCase()),
   );
+
+  const dataWithFilters = () => {
+    const filterColumn = filters[0];
+    const filterOperator = filters[1];
+    const filterNumber = Number(filters[2]);
+
+    let filtered = filteredData;
+
+    if (filterOperator === 'maior que') {
+      filtered = filteredData.filter(
+        (obj) => obj[filterColumn] > filterNumber,
+      );
+    } else if (filterOperator === 'menor que') {
+      filtered = filteredData.filter(
+        (obj) => obj[filterColumn] < filterNumber,
+      );
+    } else if (filterOperator === 'igual a') {
+      filtered = filteredData.filter(
+        (obj) => obj[filterColumn] === String(filterNumber),
+      );
+    }
+
+    return filtered;
+  };
 
   if (error) {
     (
@@ -42,7 +66,7 @@ function Table() {
           </tr>
         </thead>
         <tbody className={ style.tbody }>
-          {filteredData.map((obj) => (
+          {dataWithFilters().map((obj) => (
             <tr key={ obj.name }>
               <td>{obj.name}</td>
               <td>{obj.rotation_period}</td>

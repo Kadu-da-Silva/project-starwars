@@ -2,10 +2,12 @@
   align-items: center;
   margin: 0;
   text-align: center;
+  width: 100%;
 }
 
 .header {
   height: 15em;
+  width: 100%;
 }
 
 .header h1 {
@@ -27,4 +29,33 @@
 .header input:focus {
   border: 1px solid yellow;
   outline: none;
+}
+
+.selects {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1em;
+  width: 100%;
+}
+
+.selects input, .selects select {
+  background-color: rgb(30, 30, 30);
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0;
+  color: white;
+  margin: 10px;
+  width: auto;
+}
+
+.selects button {
+  background-color: rgb(30, 30, 30);
+  border: 1px solid yellow;
+  border-radius: 3px;
+  color: yellow;
+}
+
+.selects button:hover {
+  background-color: rgba(255, 255, 0, 0.5);
+  cursor: pointer;
 }
