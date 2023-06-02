@@ -15,8 +15,6 @@ function Header() {
   const { setGlobalState, setFilters, filters } = useContext(FilterContext);
   setGlobalState(enterFilter.value);
 
-  console.log(filters);
-
   const handleColumns = () => {
     const columns = [
       'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water',
@@ -26,12 +24,8 @@ function Header() {
       (filter) => options === filter.column,
     );
 
-    console.log('teste');
-
     return columns.filter(handleOptions);
   };
-
-  console.log(handleColumns());
 
   function handleClickFilter() {
     setFilters(
@@ -43,6 +37,7 @@ function Header() {
         }],
     );
 
+    // Atribui o valor do index 0 ao select
     filterColumn.setValue(handleColumns()[0]);
   }
 
