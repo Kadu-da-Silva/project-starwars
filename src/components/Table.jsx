@@ -12,7 +12,7 @@ function Table() {
   // estados globais com os filtros
   // globalState = '' filtro digitado pelo usuário
   // filters = { column: '', comparator: '', number: 0 } estados com os filtros criados
-  const { globalState, filters } = useContext(FilterContext);
+  const { globalState, filters, setFilters } = useContext(FilterContext);
 
   // array filtrado com o campo de busca
   const filteredData = data.filter(
@@ -20,7 +20,7 @@ function Table() {
   );
 
   // array com os filtros criados
-  // console.log(filters);
+  console.log(filters);
 
   // interage a cada filtro
   const dataWithFilters = filteredData.filter((planet) => filters.every((filter) => {
@@ -40,7 +40,13 @@ function Table() {
     }
   }));
 
-  // console.log(dataWithFilters);
+  function handleDeleteFilter(index) {
+    setFilters((prevFilters) => {
+      const updatedFilters = [...prevFilters];
+      updatedFilters.splice(index, 1);
+      return updatedFilters;
+    });
+  }
 
   if (error) {
     (
@@ -54,8 +60,9 @@ function Table() {
     <section className={ style.section }>
       <div className={ style.filters }>
         {filters.map((filter, index) => (
-          <div key={ index } className={ style.filter }>
+          <div key={ index } className={ style.filter } data-testid="filter">
             <span>{`${filter.column} ${filter.comparator} ${filter.number}`}</span>
+            <button onClick={ () => handleDeleteFilter(index) }>🗑️</button>
           </div>
         ))}
       </div>

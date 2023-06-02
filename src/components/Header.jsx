@@ -90,6 +90,12 @@ function Header() {
           >
             Filtrar
           </button>
+          <button
+            onClick={ () => setFilters([]) }
+            data-testid="button-remove-filters"
+          >
+            Remover todas filtragens
+          </button>
         </div>
       </header>
     </section>
