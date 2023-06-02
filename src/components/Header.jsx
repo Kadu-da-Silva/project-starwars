@@ -60,7 +60,7 @@ function Header() {
             data-testid="column-filter"
           >
             {handleColumns().map((column) => (
-              <option value={ column } key={ column } data-testid="column-filter">
+              <option value={ column } key={ column }>
                 {column}
               </option>
             ))}
