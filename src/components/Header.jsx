@@ -15,16 +15,6 @@ function Header() {
   const { setGlobalState, setFilters, filters } = useContext(FilterContext);
   setGlobalState(enterFilter.value);
 
-  function handleClickFilter() {
-    setFilters(
-      [...filters,
-        {
-          column: filterColumn.value,
-          comparator: filterComparative.value,
-          number: filterNumber.value }],
-    );
-  }
-
   console.log(filters);
 
   const handleColumns = () => {
@@ -36,10 +26,25 @@ function Header() {
       (filter) => options === filter.column,
     );
 
+    console.log('teste');
+
     return columns.filter(handleOptions);
   };
 
   console.log(handleColumns());
+
+  function handleClickFilter() {
+    setFilters(
+      [...filters,
+        {
+          column: filterColumn.value,
+          comparator: filterComparative.value,
+          number: filterNumber.value,
+        }],
+    );
+
+    filterColumn.setValue(handleColumns()[0]);
+  }
 
   return (
     <section className={ style.section }>

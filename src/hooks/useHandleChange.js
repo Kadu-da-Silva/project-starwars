@@ -7,5 +7,5 @@ export default function useHandleChange(initialValue) {
     setValue(e.target.value);
   }
 
-  return { value, handleChange };
+  return { value, setValue, handleChange };
 }
