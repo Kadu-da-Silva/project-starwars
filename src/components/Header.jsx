@@ -25,6 +25,22 @@ function Header() {
     );
   }
 
+  console.log(filters);
+
+  const handleColumns = () => {
+    const columns = [
+      'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water',
+    ];
+
+    const handleOptions = (options) => !filters.find(
+      (filter) => options === filter.column,
+    );
+
+    return columns.filter(handleOptions);
+  };
+
+  console.log(handleColumns());
+
   return (
     <section className={ style.section }>
       <header className={ style.header }>
@@ -43,11 +59,11 @@ function Header() {
             onChange={ filterColumn.handleChange }
             data-testid="column-filter"
           >
-            <option value="population">population</option>
-            <option value="orbital_period">orbital_period</option>
-            <option value="diameter">diameter</option>
-            <option value="rotation_period">rotation_period</option>
-            <option value="surface_water">surface_water</option>
+            {handleColumns().map((column) => (
+              <option value={ column } key={ column } data-testid="column-filter">
+                {column}
+              </option>
+            ))}
           </select>
 
           <select

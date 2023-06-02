@@ -20,7 +20,7 @@ function Table() {
   );
 
   // array com os filtros criados
-  console.log(filters);
+  // console.log(filters);
 
   // interage a cada filtro
   const dataWithFilters = filteredData.filter((planet) => filters.every((filter) => {
@@ -40,7 +40,7 @@ function Table() {
     }
   }));
 
-  console.log(dataWithFilters);
+  // console.log(dataWithFilters);
 
   if (error) {
     (
