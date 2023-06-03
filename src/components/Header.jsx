@@ -37,7 +37,7 @@ function Header() {
         }],
     );
 
-    // Atribui o valor do index 0 ao select
+    // Atribui o valor do handleColumns no index 0 ao select
     filterColumn.setValue(handleColumns()[0]);
   }
 

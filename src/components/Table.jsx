@@ -7,7 +7,7 @@ import FilterContext from '../context/FilterContext';
 
 function Table() {
   // estado com os resultados da API
-  const { data, error } = useFetch();
+  const { data } = useFetch();
 
   // estados globais com os filtros
   // globalState = '' filtro digitado pelo usuário
@@ -19,14 +19,10 @@ function Table() {
     (obj) => obj.name.toLowerCase().includes(globalState.toLowerCase()),
   );
 
-  // array com os filtros criados
-  console.log(filters);
-
   // interage a cada filtro
   const dataWithFilters = filteredData.filter((planet) => filters.every((filter) => {
     const valuePlanet = Number(planet[filter.column]);
     const valueFilter = Number(filter.number);
-    // console.log(valueFilter);
 
     switch (filter.comparator) {
     case 'maior que':
@@ -48,21 +44,18 @@ function Table() {
     });
   }
 
-  if (error) {
-    (
-      <main>
-        <h1>Um erro inesperado aconteceu</h1>
-      </main>
-    );
-  }
-
   return (
     <section className={ style.section }>
       <div className={ style.filters }>
         {filters.map((filter, index) => (
           <div key={ index } className={ style.filter } data-testid="filter">
             <span>{`${filter.column} ${filter.comparator} ${filter.number}`}</span>
-            <button onClick={ () => handleDeleteFilter(index) }>🗑️</button>
+            <button
+              data-testid="button-remove-filter"
+              onClick={ () => handleDeleteFilter(index) }
+            >
+              🗑️
+            </button>
           </div>
         ))}
       </div>
