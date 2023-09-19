@@ -11,4 +11,4 @@ Neste projeto desenvolvi uma lista com filtros de planetas do universo de Star W
 * Criar React Hooks customizados.
 * Escrever testes para garantir que sua aplicação possua uma boa cobertura de testes.
 
-* ## +1 Projeto desenvolvido na [Trybe](https://www.betrybe.com/)💚
+## +1 Projeto desenvolvido na [Trybe](https://www.betrybe.com/)💚
